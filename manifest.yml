@@ -1,14 +1,16 @@
 applications:
-- name: tdlabs-keycloak-test
+- name: keycloak-server
   memory: 1024M
   # Add your name/initials to make the hostname unique
-  host: tdlabs-kc-demo-${random-word}
-  # Currently defaults to PWS
-  domain: cfapps.io
+  host: pccc-keycloak-server
   #domain: local.pcfdev.io
 #  buildpack: https://github.com/thomasdarimont/java-buildpack.git
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+#  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  buildpack: java_buildpack
   path: target/spring-boot-keycloak-server-example-0.0.4.BUILD-SNAPSHOT.jar
+  health-check-type: port
+#  health-check-type: http
+#  health-check-http-endpoint: /health
   env:
     KEYCLOAK_ADMIN_USERNAME: admin
     KEYCLOAK_ADMIN_PASSWORD: admin
